@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Visualizing sorting algos</title>
+    <meta charset="utf-8" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="themes/light.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="themes/dark.css" /> -->
+</head>
+
+<body>
+    
+
+    <h1 style="font-family: 'Lobster', cursive;">Sorting Algorithms</h1>
+
+    <div id="theme_div">
+        <table>
+            <tr>
+                <td><label for="theme_in">Theme: </label></td>
+                <td><select id="theme_in">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="score_div">
+        <table>
+            <tr>
+                <td>Comparisons</td>
+                <td id="comparisons">0</td>
+            </tr>
+            <tr>
+                <td>Movements</td>
+                <td id="movements">0</td>
+            </tr>
+            <tr>
+                <td>Runtime [s]</td>
+                <td id="runtime">0</td>
+            </tr>
+        </table>
+    </div>
+    <div id="algorithm_div">-</div>
+
+    <table id="algorithm_settings">
+        <tr>
+            <td><label for="algorithm_input">Algorithm: </label></td>
+            <td><select id="algorithm_input">
+                    <option value="bubble_sort">BubbleSort</option>
+                    <option value="insertion_sort">InsertionSort</option>
+                    <option value="selection_sort">SelectionSort</option>
+                    <option value="double_selection_sort">Double SelectionSort</option>
+
+                    <option value="quick_sort">QuickSort</option>
+                    <option value="merge_sort">MergeSort</option>
+                    <option value="counting_sort">CountingSort</option>
+                    <option value="gravity_sort">GravitySort</option>
+                    <option value="bitonic_sort">BitonicSort</option>
+                    <option value="tree_sort">TreeSort</option>
+
+                    <option value="intro_sort">IntroSort</option>
+                    <option value="heap_sort">HeapSort</option>
+                    <option value="radix_sort_i">RadixSort [ISort]</option>
+                    <option value="radix_sort_c">RadixSort [CSort]</option>
+                    <option value="shell_sort">ShellSort</option>
+                    <option value="comb_sort">CombSort</option>
+
+                    <option value="quick_merge_sort">Quick-MergeSort</option>
+                    <option value="weave_sort">WeaveSort</option>
+                    <option value="gnome_sort">GnomeSort</option>
+                    <option value="cocktail_sort">CocktailShaker-Sort</option>
+                    <option value="cocktail_merge_sort">Cocktail-MergeSort</option>
+                    <option value="odd_even_sort">OddEvenSort</option>
+                    <option value="odd_even_merge_sort">OddEven-MergeSort</option>
+
+                    <option value="slow_sort">SlowSort</option>
+                    <option value="stooge_sort">StoogeSort</option>
+                    <option value="bogo_sort">BogoSort</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td><label for="amount_input">Amount: </label></td>
+            <td><input id="amount_input" type="number" placeholder="e.g.: 1000" /></td>
+        </tr>
+        <tr>
+            <td><label for="pause_input">Pause [ms]: </label></td>
+            <td><input id="pause_input" type="number" placeholder="e.g.: 100" /></td>
+        </tr>
+        <tr>
+            <td><label for="lower_input">Lower boundry: </label></td>
+            <td><input id="lower_input" type="number" placeholder="e.g.: 10" /></td>
+        </tr>
+        <tr>
+            <td><label for="upper_input">Upper boundry: </label></td>
+            <td><input id="upper_input" type="number" placeholder="e.g.: 10000" /></td>
+        </tr>
+        <tr>
+            <td><label for="display_function">Display option: </label></td>
+            <td>
+                <select id="display_function">
+                    <option value="display_array_pillars">As pillars</option>
+                    <option value="display_array_dots">As dots</option>
+                    <option value="display_array_color_pillars">As colored pillars</option>
+                    <option value="display_array_color_dots">As colored dots</option>
+
+                    <option value="display_array_pyramid">As pyramid</option>
+                    <option value="display_array_color_pyramid">As colored pyramid</option>
+
+                    <option value="display_array_pillar_spiral">As spiral of pillars</option>
+                    <option value="display_array_dots_spiral">As spiral of dots</option>
+                    <option value="display_array_color_pillar_spiral">As colored spiral of pillars</option>
+                    <option value="display_array_color_dots_spiral">As colored spiral of dots</option>
+
+                    <option value="display_array_color_circle">As colored circle</option>
+                    <option value="display_array_color_circle_dots">As colored circle of dots</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="draw_random">Creation options: </label></td>
+            <td>
+                <select id="draw_random">
+                    <option value="draw_random">Completely random</option>
+                    <option value="draw_semi_random">"Semi" random</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" id="submit_start" value="Start!" /></td>
+        </tr>
+    </table>
+
+    <div id="canvas_div">
+        <canvas id="main" width="800" awidth="800" height="700"></canvas>
+    </div>
+
+    <script src="algos/quick_sort.js"></script>
+    <script src="algos/counting_sort.js"></script>
+    <script src="algos/insertion_sort.js"></script>
+    <script src="algos/selection_sort.js"></script>
+    <script src="algos/bubble_sort.js"></script>
+    <script src="algos/radix_sort.js"></script>
+    <script src="algos/heap_sort.js"></script>
+    <script src="algos/bitonic_sort.js"></script>
+    <script src="algos/shell_sort.js"></script>
+    <script src="algos/merge_sort.js"></script>
+    <script src="algos/bogo_sort.js"></script>
+    <script src="algos/cocktail_sort.js"></script>
+    <script src="algos/gnome_sort.js"></script>
+    <script src="algos/comb_sort.js"></script>
+    <script src="algos/tree_sort.js"></script>
+    <script src="algos/intro_sort.js"></script>
+    <script src="algos/slow_sort.js"></script>
+    <script src="algos/stooge_sort.js"></script>
+    <script src="algos/double_selection_sort.js"></script>
+    <script src="algos/gravity_sort.js"></script>
+    <script src="algos/cocktail_merge.js"></script>
+    <script src="algos/quick_merge_sort.js"></script>
+    <script src="algos/odd_even_sort.js"></script>
+    <script src="algos/odd_even_merge_sort.js"></script>
+    <script src="algos/weave_sort.js"></script>
+
+    <script src="visualize.js"></script>
+
+    <script>
+        window.onload = e => { 
+            cnvs = document.getElementById('main');
+            ctx = cnvs.getContext('2d');
+
+            canvas = {
+                width: document.getElementById('main').attributes["awidth"].value,
+                height: document.getElementById('main').height
+            };
+
+            document.getElementById('theme_in').onchange = e => {
+                changeTheme(e.target.value);
+            };
+            document.onkeyup = e => {
+                if (e.keyCode == 13) {
+                    if (document.getElementById('algorithm_settings').style.display == "block")
+                        document.getElementById('submit_start').click();
+                }
+            };
+
+            document.getElementById('submit_start').onclick = e => {
+                let algo = document.getElementById('algorithm_input').value,
+                    amount = document.getElementById('amount_input').value,
+                    pause_ms = document.getElementById('pause_input').value,
+                    lower = document.getElementById('lower_input').value,
+                    upper = document.getElementById('upper_input').value,
+                    display_func = document.getElementById('display_function').value,
+                    draw_func = document.getElementById('draw_random').value;
+
+                if (amount != '')
+                    glob_amount = parseInt(amount);
+                if (pause_ms != '')
+                    glob_sleep_time = parseInt(pause_ms);
+                if (lower != '')
+                    glob_lower = parseInt(lower);
+                if (upper != '')
+                    glob_upper = parseInt(upper);
+//..............................DISPLAY ALL KIND OF PATTERNS FOR SORT.................................//
+                switch (display_func) {
+                    case 'display_array_pillars':
+                        glob_display_func = display_array_pillars;
+                        break;
+                    case 'display_array_color_pillars':
+                        glob_display_func = display_array_color_pillars
+                        break;
+                    case 'display_array_pillar_spiral':
+                        glob_display_func = display_array_pillar_spiral;
+                        break;
+                    case 'display_array_color_circle':
+                        glob_display_func = display_array_color_circle;
+                        break;
+                    case 'display_array_color_pillar_spiral':
+                        glob_display_func = display_array_color_pillar_spiral;
+                        break;
+                    case 'display_array_dots':
+                        glob_display_func = display_array_dots;
+                        break;
+                    case 'display_array_color_dots':
+                        glob_display_func = display_array_color_dots;
+                        break;
+                    case 'display_array_dots_spiral':
+                        glob_display_func = display_array_dots_spiral;
+                        break;
+                    case 'display_array_color_dots_spiral':
+                        glob_display_func = display_array_color_dots_spiral;
+                        break;
+                    case 'display_array_color_circle_dots':
+                        glob_display_func = display_array_color_circle_dots;
+                        break;
+                    case 'display_array_pyramid':
+                        glob_display_func = display_array_pyramid;
+                        break;
+                    case 'display_array_color_pyramid':
+                        glob_display_func = display_array_color_pyramid;
+                        break;
+                }
+// ....................FOR RANDOM AND SEMI RANDOM PATTERN...........................//                
+                switch (draw_func) {
+                    case 'draw_random':
+                        glob_random_func = draw_random;
+                        break;
+                    case 'draw_semi_random':
+                        glob_random_func = draw_semi_random;
+                        break;
+                }
+
+
+//...............................ALL ALGORITHM......................................//
+                glob_stime = (new Date()).getTime();
+                switch (algo) {
+                    case 'quick_sort':
+                        {
+                            doSortingAlgo(doQuickSort);
+                        }
+                        break;
+                    case 'counting_sort':
+                        {
+                            doSortingAlgo(doCountingSort);
+                        }
+                        break;
+                    case 'insertion_sort':
+                        {
+                            doSortingAlgo(doInsertionSort);
+                        }
+                        break;
+                    case 'selection_sort':
+                        {
+                            doSortingAlgo(doSelectionSort);
+                        }
+                        break;
+                    case 'bubble_sort':
+                        {
+                            doSortingAlgo(doBubbleSort);
+                        }
+                        break;
+                    case 'heap_sort':
+                        {
+                            doSortingAlgo(doHeapSort);
+                        }
+                        break;
+                    case 'radix_sort_i':
+                        {
+                            doSortingAlgo(doRadixSort_i);
+                        }
+                        break;
+                    case 'radix_sort_c':
+                        {
+                            doSortingAlgo(doRadixSort_c);
+                        }
+                        break;
+                    case 'bitonic_sort':
+                        {
+                            doSortingAlgo(doBitonicSort);
+                        }
+                        break;
+                    case 'shell_sort':
+                        {
+                            doSortingAlgo(doShellSort);
+                        }
+                        break;
+                    case 'merge_sort':
+                        {
+                            doSortingAlgo(doMergeSort);
+                        }
+                        break;
+                    case 'bogo_sort':
+                        {
+                            doSortingAlgo(doBogoSort);
+                        }
+                        break;
+                    case 'cocktail_sort':
+                        {
+                            doSortingAlgo(doCocktailSort);
+                        }
+                        break;
+                    case 'gnome_sort':
+                        {
+                            doSortingAlgo(doGnomeSort);
+                        }
+                        break;
+                    case 'comb_sort':
+                        {
+                            doSortingAlgo(doCombSort);
+                        }
+                        break;
+                    case 'tree_sort':
+                        {
+                            doSortingAlgo(doTreeSort);
+                        }
+                        break;
+                    case 'intro_sort':
+                        {
+                            doSortingAlgo(doIntroSort);
+                        }
+                        break;
+                    case 'slow_sort':
+                        {
+                            doSortingAlgo(doSlowSort);
+                        }
+                        break;
+                    case 'stooge_sort':
+                        {
+                            doSortingAlgo(doStoogeSort);
+                        }
+                        break;
+                    case 'double_selection_sort':
+                        {
+                            doSortingAlgo(doDSelectionSort);
+                        }
+                        break;
+                    case 'gravity_sort':
+                        {
+                            doSortingAlgo(doGravitySort);
+                        }
+                        break;
+                    case 'cocktail_merge_sort':
+                        {
+                            doSortingAlgo(doCocktailMergeSort);
+                        }
+                        break;
+                    case 'quick_merge_sort':
+                        {
+                            doSortingAlgo(doQuickMergeSort);
+                        }
+                        break;
+                    case 'odd_even_sort':
+                        {
+                            doSortingAlgo(doOddEvenSort);
+                        }
+                        break;
+                    case 'odd_even_merge_sort':
+                        {
+                            doSortingAlgo(doOddEvenMergeSort);
+                        }
+                        break;
+                    case 'weave_sort':
+                        {
+                            doSortingAlgo(doWeaveSort);
+                        }
+                        break;
+                }
+            };
+
+            visualize_init();
+        };
+    </script>
+</body>
+
+</html>
